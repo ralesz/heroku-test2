@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/ralesz/heroku-test2/issues"
   },
-  "homepage": "https://github.com/ralesz/heroku-test2#readme"
+  "homepage": "https://github.com/ralesz/heroku-test2#readme",
+  "dependencies": {
+    "mongoose": "^5.4.3"
+  }
 }

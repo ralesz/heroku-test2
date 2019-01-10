@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost/nodeappdatabase', {
-    useMongoClient: true
+mongoose.connect('mongodb://raf1:Haslo123@ds253284.mlab.com:53284/my2base', {
+    useNewUrlParser: true
 });
 
 //new user Schema
@@ -107,13 +107,27 @@ const updadeUserPassword = function() {
 }
 
 const updateUsername = function() {
-    // update username
-    return User.findOneAndUpdate({ username: 'Benny_the_boy' }, { username: 'Benny_the_man' }, { new: true }, function(err, user) {
-        if (err) throw err;
 
-        console.log('Nazwa uzytkownika po aktualizacji to ' + user.username);
-    })
+    return User.findOne({ username: 'Benny_the_boy' })
+        .then(function(user) {
+            console.log('Old username ' + user.username);
+            user.username = 'Benny_the_man';
+            console.log('New username ' + user.username);
+            return user.save(function(err) {
+                if (err) throw err;
+
+                console.log('Uzytkownik ' + user.name + ' zostal pomyslnie zaktualizowany');
+            })
+        })
 }
+
+//     // update username
+//     return User.findOneAndUpdate({ username: 'Benny_the_boy' }, { username: 'Benny_the_man' }, { new: true }, function(err, user) {
+//         if (err) throw err;
+
+//         console.log('Nazwa uzytkownika po aktualizacji to ' + user.username);
+//     })
+// }
 
 const findMarkAndDelete = function() {
     // find specific user and delete
